@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:unsplash_gallery/theme/theme.dart';
+import 'package:unsplash_gallery/navigation/navigation.dart';
 
 void main() => runApp(const UnsplashGalleryApp());
 
@@ -12,9 +13,8 @@ class UnsplashGalleryApp extends StatelessWidget {
     return MaterialApp(
       title: 'Unsplash Gallery',
       theme: theme,
-      home: const Center(
-        child: Text('Hello :3'),
-      ),
+      routes: routes,
+      initialRoute: initialRoute,
     );
   }
 }
