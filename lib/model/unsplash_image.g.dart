@@ -17,6 +17,7 @@ UnsplashImage _$UnsplashImageFromJson(Map<String, dynamic> json) =>
       height: json['height'] as int,
       likes: json['likes'] as int,
       urls: Urls.fromJson(json['urls'] as Map<String, dynamic>),
+      user: User.fromJson(json['user'] as Map<String, dynamic>),
       description: json['description'] as String?,
       alt_description: json['alt_description'] as String?,
     );
@@ -34,4 +35,5 @@ Map<String, dynamic> _$UnsplashImageToJson(UnsplashImage instance) =>
       'height': instance.height,
       'likes': instance.likes,
       'urls': instance.urls.toJson(),
+      'user': instance.user.toJson(),
     };

@@ -1,5 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'unsplash_image_urls.dart';
+import 'unsplash_user.dart';
 
 part 'unsplash_image.g.dart';
 
@@ -9,6 +10,7 @@ class UnsplashImage {
   final String? description, alt_description;
   final int width, height, likes;
   final Urls urls;
+  final User user;
 
   const UnsplashImage({
     required this.id,
@@ -20,13 +22,14 @@ class UnsplashImage {
     required this.height,
     required this.likes,
     required this.urls,
+    required this.user,
     this.description,
     this.alt_description
   });
 
   @override
   String toString() {
-    return 'UnsplashImage{id: $id, created_at: $created_at, updated_at: $updated_at, color: $color, blur_hash: $blur_hash, description: $description, alt_description: $alt_description, width: $width, height: $height, likes: $likes, urls: $urls}';
+    return 'UnsplashImage{id: $id, created_at: $created_at, updated_at: $updated_at, color: $color, blur_hash: $blur_hash, description: $description, alt_description: $alt_description, width: $width, height: $height, likes: $likes, urls: $urls, user: $user}';
   }
 
   factory UnsplashImage.fromJson(Map<String, dynamic> json) =>
