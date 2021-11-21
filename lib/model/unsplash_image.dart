@@ -1,27 +1,32 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'unsplash_image_urls.dart';
 
 part 'unsplash_image.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 class UnsplashImage {
-  final String id, createdAt, updatedAt, color, blurHash, description;
+  final String id, created_at, updated_at, color, blur_hash;
+  final String? description, alt_description;
   final int width, height, likes;
+  final Urls urls;
 
   const UnsplashImage({
     required this.id,
-    required this.createdAt,
-    required this.updatedAt,
+    required this.created_at,
+    required this.updated_at,
     required this.color,
-    required this.blurHash,
-    required this.description,
+    required this.blur_hash,
     required this.width,
     required this.height,
     required this.likes,
+    required this.urls,
+    this.description,
+    this.alt_description
   });
 
   @override
   String toString() {
-    return 'UnsplashImage{id: $id, createdAt: $createdAt, updatedAt: $updatedAt, color: $color, blurHash: $blurHash, description: $description, width: $width, height: $height, likes: $likes}';
+    return 'UnsplashImage{id: $id, created_at: $created_at, updated_at: $updated_at, color: $color, blur_hash: $blur_hash, description: $description, alt_description: $alt_description, width: $width, height: $height, likes: $likes, urls: $urls}';
   }
 
   factory UnsplashImage.fromJson(Map<String, dynamic> json) =>
@@ -29,3 +34,4 @@ class UnsplashImage {
 
   Map<String, dynamic> toJson() => _$UnsplashImageToJson(this);
 }
+
