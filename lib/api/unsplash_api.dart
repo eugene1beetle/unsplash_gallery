@@ -13,8 +13,10 @@ class UnsplashApi {
     };
     final uri = Uri.https(baseUrl, photos, queryParams);
     final response = await http.get(uri);
-    final list = convert.jsonDecode(response.body) as List<dynamic>;
-
-    return list.map((imageItem) => UnsplashImage.fromJson(imageItem)).toList();
+    if (response.statusCode == 200) {
+      final list = convert.jsonDecode(response.body) as List<dynamic>;
+      return list.map((imageItem) => UnsplashImage.fromJson(imageItem)).toList();
+    }
+    throw "Error while fetching images, code: ${response.statusCode}";
   }
 }
