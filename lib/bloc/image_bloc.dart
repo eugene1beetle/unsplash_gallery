@@ -7,7 +7,6 @@ import 'package:unsplash_gallery/api/unsplash_api.dart';
 import 'package:unsplash_gallery/model/unsplash_image.dart';
 
 part 'image_event.dart';
-
 part 'image_state.dart';
 
 class ImageBloc extends Bloc<ImageEvent, ImageState> {
