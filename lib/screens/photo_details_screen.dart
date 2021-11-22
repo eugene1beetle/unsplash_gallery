@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:unsplash_gallery/model/unsplash_image.dart';
 
@@ -28,7 +29,7 @@ class PhotoDetailsScreen extends StatelessWidget {
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.width,
               child: Hero(
-                tag: 'image-id-${image.id}',
+                tag: 'image-id-${image.id}-${image.user.username}',
                 child: Image.network(
                   image.urls.small,
                   fit: BoxFit.cover,
@@ -38,24 +39,63 @@ class PhotoDetailsScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  Container(
-                    alignment: Alignment.centerRight,
-                    margin: const EdgeInsets.only(top: 4, bottom: 4),
-                    child: Text(
-                      '${image.likes} likes | Author: ${image.user.name}',
-                    ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Row(
+                        children: [
+                          SvgPicture.asset(
+                            'assets/svg/heart.svg',
+                            width: 24,
+                          ),
+                          Text(
+                            ' ${image.likes}',
+                            style: const TextStyle(fontSize: 24),
+                          ),
+                        ],
+                      ),
+                      Text(
+                        image.user.username,
+                        style: const TextStyle(fontSize: 24),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 8,
                   ),
                   Text(
                     generateDescription(
                       image.description,
                       image.alt_description,
                     ),
+                    textAlign: TextAlign.left,
                     style: const TextStyle(
                       fontSize: 24,
                     ),
                   ),
-                  // Text(DateTime.parse(image.created_at)),
+                  const Text(
+                    'Author social media accounts:',
+                    style: TextStyle(fontSize: 16),
+                  ),
+                  Container(
+                    padding: const EdgeInsets.only(left: 4, top: 4),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        Text(
+                          'Instagram: ${image.user.instagram_username == null ? 'not connected' : '@${image.user.instagram_username}'}',
+                          style: const TextStyle(fontSize: 13),
+                        ),
+                        Text(
+                          'Twitter: ${image.user.twitter_username == null ? 'not connected' : '@${image.user.twitter_username}'}',
+                          style: const TextStyle(fontSize: 14),
+                        ),
+                      ],
+                    ),
+                  ),
                 ],
               ),
             )
